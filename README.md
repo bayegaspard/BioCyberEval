@@ -135,8 +135,10 @@ every table and figure are in [`results/raw/`](results/raw/).
 ## License and citation
 
 Code is MIT-licensed; the benchmark data (`dataset/`) are released under
-CC BY 4.0. See [`LICENSE`](LICENSE). If you use BioCyberEval, please cite:
+CC BY 4.0. See [`LICENSE`](LICENSE).
 
+> **Note:** The accompanying paper is currently under review at IEEE Secure Bio.
+>
 > G. Baye, "BioCyberEval: Evaluating Open-Weight LLMs on Cybersecurity Controls
 > in Regulated Life Sciences," 2026.
 
