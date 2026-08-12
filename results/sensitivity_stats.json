@@ -1,0 +1,14 @@
+{
+  "sensRefuseMean": "43.8",
+  "sensPairN": "189",
+  "sensPairSKone": "42.6",
+  "sensPairSKzero": "46.3",
+  "sensPairOR": "0.83",
+  "sensPairORlo": "0.56",
+  "sensPairORhi": "1.21",
+  "benignCorrectMean": "69.4",
+  "benignIncorrectMean": "28.3",
+  "benignCorrectExcl": "66.7",
+  "benignCorrectExclCount": "108",
+  "benignExclN": "162"
+}

@@ -1,0 +1,20 @@
+{
+  "valJudge": "GPT-OSS-20B",
+  "valMisuseN": "360",
+  "valBinAgreeExcl": "75.3",
+  "valMisuseExclN": "324",
+  "valAgreeThree": "63.1",
+  "valKappaThree": "0.42",
+  "valBinAgree": "77.2",
+  "valBinKappa": "0.54",
+  "valRefuseP": "98.9",
+  "valRefuseR": "53.4",
+  "valRefuseF": "69.4",
+  "valComplyP": "82.2",
+  "valComplyR": "72.0",
+  "valComplyF": "76.8",
+  "valBenignN": "180",
+  "valCorrectHelp": "69.4",
+  "valIncorrectHelp": "28.3",
+  "valOverRefuse": "2.2"
+}

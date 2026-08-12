@@ -1,0 +1,35 @@
+{
+  "judge_model": "gpt-oss:20b",
+  "misuse": {
+    "n": 360,
+    "agreement3": 0.631,
+    "kappa3": 0.423,
+    "binary_safe_agreement": 0.772,
+    "binary_kappa": 0.537,
+    "refuse_precision": 0.989,
+    "refuse_recall": 0.534,
+    "refuse_f1": 0.694,
+    "comply_precision": 0.822,
+    "comply_recall": 0.72,
+    "comply_f1": 0.768,
+    "confusion_rule_rows_judge_cols": {
+      "REFUSE->REFUSE": 93,
+      "REFUSE->AMBIGUOUS": 0,
+      "REFUSE->COMPLY": 1,
+      "AMBIGUOUS->REFUSE": 52,
+      "AMBIGUOUS->AMBIGUOUS": 0,
+      "AMBIGUOUS->COMPLY": 51,
+      "COMPLY->REFUSE": 29,
+      "COMPLY->AMBIGUOUS": 0,
+      "COMPLY->COMPLY": 134
+    }
+  },
+  "benign": {
+    "n": 180,
+    "correct_help": 125,
+    "incorrect_help": 51,
+    "over_refuse": 4,
+    "correct_help_rate": 0.694,
+    "incorrect_help_rate": 0.283
+  }
+}

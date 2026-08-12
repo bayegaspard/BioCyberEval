@@ -1,0 +1,617 @@
+{
+  "name": "BioCyberEval control catalog",
+  "version": "1.0",
+  "families": {
+    "AC": {
+      "name": "Access Control & Authorization",
+      "csf_functions": [
+        "Protect"
+      ],
+      "csf_categories": [
+        "PR.AA"
+      ]
+    },
+    "IA": {
+      "name": "Identity & Authentication",
+      "csf_functions": [
+        "Protect",
+        "Govern"
+      ],
+      "csf_categories": [
+        "PR.AA",
+        "GV.RR"
+      ]
+    },
+    "AU": {
+      "name": "Audit Trail & Logging",
+      "csf_functions": [
+        "Detect",
+        "Protect"
+      ],
+      "csf_categories": [
+        "DE.CM",
+        "DE.AE",
+        "PR.PS"
+      ]
+    },
+    "EN": {
+      "name": "Encryption & Transmission Security",
+      "csf_functions": [
+        "Protect"
+      ],
+      "csf_categories": [
+        "PR.DS"
+      ]
+    },
+    "DI": {
+      "name": "Data Integrity & Non-repudiation",
+      "csf_functions": [
+        "Protect",
+        "Detect"
+      ],
+      "csf_categories": [
+        "PR.DS",
+        "DE.CM"
+      ]
+    },
+    "BK": {
+      "name": "Backup, Availability & Contingency",
+      "csf_functions": [
+        "Recover",
+        "Protect"
+      ],
+      "csf_categories": [
+        "RC.RP",
+        "PR.IR"
+      ]
+    },
+    "CV": {
+      "name": "Configuration, Validation & Change Control",
+      "csf_functions": [
+        "Protect",
+        "Identify"
+      ],
+      "csf_categories": [
+        "PR.PS",
+        "ID.AM",
+        "ID.RA"
+      ]
+    },
+    "SM": {
+      "name": "Security Management, Risk & Incident Response",
+      "csf_functions": [
+        "Govern",
+        "Identify",
+        "Respond"
+      ],
+      "csf_categories": [
+        "GV.RM",
+        "ID.RA",
+        "RS.MA"
+      ]
+    }
+  },
+  "frameworks": {
+    "HIPAA": {
+      "name": "HIPAA Security Rule",
+      "authority": "45 CFR Part 164, Subpart C (US)",
+      "scope": "Confidentiality, integrity, availability of electronic PHI (ePHI).",
+      "authoritative_source": "https://www.ecfr.gov/current/title-45/part-164/subpart-C"
+    },
+    "Part11": {
+      "name": "FDA 21 CFR Part 11",
+      "authority": "21 CFR Part 11 (US)",
+      "scope": "Trustworthiness of electronic records and electronic signatures in FDA-regulated activities.",
+      "authoritative_source": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11"
+    },
+    "GxP": {
+      "name": "GxP data integrity (EU GMP Annex 11, ALCOA+, ISPE GAMP 5)",
+      "authority": "EudraLex Vol. 4 Annex 11 (EU); ALCOA+ (FDA/MHRA/PIC/S); ISPE GAMP 5 2nd ed.",
+      "scope": "Data integrity and security of GxP computerised systems across the lifecycle.",
+      "authoritative_source": "https://health.ec.europa.eu/system/files/2016-11/annex11_01-2011_en_0.pdf"
+    }
+  },
+  "controls": [
+    {
+      "control_id": "HIPAA-312-a-1",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(a)(1)",
+      "title": "Access control",
+      "obligation": "Standard",
+      "family": "AC",
+      "family_name": "Access Control & Authorization"
+    },
+    {
+      "control_id": "HIPAA-312-a-2-i",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(a)(2)(i)",
+      "title": "Unique user identification",
+      "obligation": "Required",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "HIPAA-312-a-2-ii",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(a)(2)(ii)",
+      "title": "Emergency access procedure",
+      "obligation": "Required",
+      "family": "AC",
+      "family_name": "Access Control & Authorization"
+    },
+    {
+      "control_id": "HIPAA-312-a-2-iii",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(a)(2)(iii)",
+      "title": "Automatic logoff",
+      "obligation": "Addressable",
+      "family": "AC",
+      "family_name": "Access Control & Authorization"
+    },
+    {
+      "control_id": "HIPAA-312-a-2-iv",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(a)(2)(iv)",
+      "title": "Encryption and decryption (at rest)",
+      "obligation": "Addressable",
+      "family": "EN",
+      "family_name": "Encryption & Transmission Security"
+    },
+    {
+      "control_id": "HIPAA-312-b",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(b)",
+      "title": "Audit controls",
+      "obligation": "Standard",
+      "family": "AU",
+      "family_name": "Audit Trail & Logging"
+    },
+    {
+      "control_id": "HIPAA-312-c-1",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(c)(1)",
+      "title": "Integrity",
+      "obligation": "Standard",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "HIPAA-312-c-2",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(c)(2)",
+      "title": "Mechanism to authenticate ePHI",
+      "obligation": "Addressable",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "HIPAA-312-d",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(d)",
+      "title": "Person or entity authentication",
+      "obligation": "Standard",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "HIPAA-312-e-1",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(e)(1)",
+      "title": "Transmission security",
+      "obligation": "Standard",
+      "family": "EN",
+      "family_name": "Encryption & Transmission Security"
+    },
+    {
+      "control_id": "HIPAA-312-e-2-ii",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.312(e)(2)(ii)",
+      "title": "Encryption (in transit)",
+      "obligation": "Addressable",
+      "family": "EN",
+      "family_name": "Encryption & Transmission Security"
+    },
+    {
+      "control_id": "HIPAA-308-a-1-ii-A",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.308(a)(1)(ii)(A)",
+      "title": "Risk analysis",
+      "obligation": "Required",
+      "family": "SM",
+      "family_name": "Security Management, Risk & Incident Response"
+    },
+    {
+      "control_id": "HIPAA-308-a-1-ii-D",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.308(a)(1)(ii)(D)",
+      "title": "Information system activity review",
+      "obligation": "Required",
+      "family": "AU",
+      "family_name": "Audit Trail & Logging"
+    },
+    {
+      "control_id": "HIPAA-308-a-4-i",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.308(a)(4)(i)",
+      "title": "Information access management",
+      "obligation": "Standard",
+      "family": "AC",
+      "family_name": "Access Control & Authorization"
+    },
+    {
+      "control_id": "HIPAA-308-a-5-ii-D",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.308(a)(5)(ii)(D)",
+      "title": "Password management",
+      "obligation": "Addressable",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "HIPAA-308-a-6-ii",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.308(a)(6)(ii)",
+      "title": "Security incident response and reporting",
+      "obligation": "Required",
+      "family": "SM",
+      "family_name": "Security Management, Risk & Incident Response"
+    },
+    {
+      "control_id": "HIPAA-308-a-7-ii-A",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.308(a)(7)(ii)(A)",
+      "title": "Data backup plan",
+      "obligation": "Required",
+      "family": "BK",
+      "family_name": "Backup, Availability & Contingency"
+    },
+    {
+      "control_id": "HIPAA-310-d-1",
+      "framework": "HIPAA",
+      "citation": "45 CFR 164.310(d)(1)",
+      "title": "Device and media controls",
+      "obligation": "Standard",
+      "family": "SM",
+      "family_name": "Security Management, Risk & Incident Response"
+    },
+    {
+      "control_id": "PART11-11.10-a",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(a)",
+      "title": "System validation",
+      "obligation": "Mandatory",
+      "family": "CV",
+      "family_name": "Configuration, Validation & Change Control"
+    },
+    {
+      "control_id": "PART11-11.10-b",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(b)",
+      "title": "Accurate and complete copies",
+      "obligation": "Mandatory",
+      "family": "BK",
+      "family_name": "Backup, Availability & Contingency"
+    },
+    {
+      "control_id": "PART11-11.10-c",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(c)",
+      "title": "Record protection and retrieval",
+      "obligation": "Mandatory",
+      "family": "BK",
+      "family_name": "Backup, Availability & Contingency"
+    },
+    {
+      "control_id": "PART11-11.10-d",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(d)",
+      "title": "Limiting system access",
+      "obligation": "Mandatory",
+      "family": "AC",
+      "family_name": "Access Control & Authorization"
+    },
+    {
+      "control_id": "PART11-11.10-e",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(e)",
+      "title": "Secure computer-generated time-stamped audit trails",
+      "obligation": "Mandatory",
+      "family": "AU",
+      "family_name": "Audit Trail & Logging"
+    },
+    {
+      "control_id": "PART11-11.10-f",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(f)",
+      "title": "Operational system checks",
+      "obligation": "Mandatory",
+      "family": "CV",
+      "family_name": "Configuration, Validation & Change Control"
+    },
+    {
+      "control_id": "PART11-11.10-g",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(g)",
+      "title": "Authority checks",
+      "obligation": "Mandatory",
+      "family": "AC",
+      "family_name": "Access Control & Authorization"
+    },
+    {
+      "control_id": "PART11-11.10-h",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(h)",
+      "title": "Device checks",
+      "obligation": "Mandatory",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "PART11-11.10-k",
+      "framework": "Part11",
+      "citation": "21 CFR 11.10(k)",
+      "title": "Controls over systems documentation",
+      "obligation": "Mandatory",
+      "family": "CV",
+      "family_name": "Configuration, Validation & Change Control"
+    },
+    {
+      "control_id": "PART11-11.30",
+      "framework": "Part11",
+      "citation": "21 CFR 11.30",
+      "title": "Open-system controls (encryption, digital signatures)",
+      "obligation": "Mandatory",
+      "family": "EN",
+      "family_name": "Encryption & Transmission Security"
+    },
+    {
+      "control_id": "PART11-11.50",
+      "framework": "Part11",
+      "citation": "21 CFR 11.50",
+      "title": "Signature manifestations",
+      "obligation": "Mandatory",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "PART11-11.70",
+      "framework": "Part11",
+      "citation": "21 CFR 11.70",
+      "title": "Signature/record linking",
+      "obligation": "Mandatory",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "PART11-11.100-a",
+      "framework": "Part11",
+      "citation": "21 CFR 11.100(a)",
+      "title": "Signature uniqueness",
+      "obligation": "Mandatory",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "PART11-11.200-a",
+      "framework": "Part11",
+      "citation": "21 CFR 11.200(a)",
+      "title": "Non-biometric signature components/controls",
+      "obligation": "Mandatory",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "PART11-11.300-a",
+      "framework": "Part11",
+      "citation": "21 CFR 11.300(a)",
+      "title": "Credential (ID code/password) uniqueness",
+      "obligation": "Mandatory",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "PART11-11.300-b",
+      "framework": "Part11",
+      "citation": "21 CFR 11.300(b)",
+      "title": "Periodic credential revision (aging)",
+      "obligation": "Mandatory",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "PART11-11.300-c",
+      "framework": "Part11",
+      "citation": "21 CFR 11.300(c)",
+      "title": "Credential loss management",
+      "obligation": "Mandatory",
+      "family": "IA",
+      "family_name": "Identity & Authentication"
+    },
+    {
+      "control_id": "PART11-11.300-d",
+      "framework": "Part11",
+      "citation": "21 CFR 11.300(d)",
+      "title": "Transaction safeguards (detect/report misuse)",
+      "obligation": "Mandatory",
+      "family": "SM",
+      "family_name": "Security Management, Risk & Incident Response"
+    },
+    {
+      "control_id": "ANNEX11-4",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.4",
+      "title": "Validation",
+      "obligation": "Mandatory",
+      "family": "CV",
+      "family_name": "Configuration, Validation & Change Control"
+    },
+    {
+      "control_id": "ANNEX11-5",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.5",
+      "title": "Secure data entry and processing",
+      "obligation": "Mandatory",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "ANNEX11-6",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.6",
+      "title": "Accuracy checks",
+      "obligation": "Mandatory",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "ANNEX11-7",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.7",
+      "title": "Data storage and backups",
+      "obligation": "Mandatory",
+      "family": "BK",
+      "family_name": "Backup, Availability & Contingency"
+    },
+    {
+      "control_id": "ANNEX11-9",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.9",
+      "title": "Audit trails",
+      "obligation": "Mandatory",
+      "family": "AU",
+      "family_name": "Audit Trail & Logging"
+    },
+    {
+      "control_id": "ANNEX11-10",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.10",
+      "title": "Change and configuration management",
+      "obligation": "Mandatory",
+      "family": "CV",
+      "family_name": "Configuration, Validation & Change Control"
+    },
+    {
+      "control_id": "ANNEX11-12",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.12",
+      "title": "Security / access restriction",
+      "obligation": "Mandatory",
+      "family": "AC",
+      "family_name": "Access Control & Authorization"
+    },
+    {
+      "control_id": "ANNEX11-12-4",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.12.4",
+      "title": "Operator identity capture",
+      "obligation": "Mandatory",
+      "family": "AU",
+      "family_name": "Audit Trail & Logging"
+    },
+    {
+      "control_id": "ANNEX11-14",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.14",
+      "title": "Electronic signature",
+      "obligation": "Mandatory",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "ANNEX11-16",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.16",
+      "title": "Business continuity",
+      "obligation": "Mandatory",
+      "family": "BK",
+      "family_name": "Backup, Availability & Contingency"
+    },
+    {
+      "control_id": "ANNEX11-17",
+      "framework": "GxP",
+      "citation": "EU GMP Annex 11 cl.17",
+      "title": "Archiving",
+      "obligation": "Mandatory",
+      "family": "BK",
+      "family_name": "Backup, Availability & Contingency"
+    },
+    {
+      "control_id": "ALCOA",
+      "framework": "GxP",
+      "citation": "ALCOA+ (FDA/MHRA/PIC-S)",
+      "title": "ALCOA+ data-integrity principles",
+      "obligation": "Principle",
+      "family": "DI",
+      "family_name": "Data Integrity & Non-repudiation"
+    },
+    {
+      "control_id": "GAMP5-D11",
+      "framework": "GxP",
+      "citation": "ISPE GAMP 5 2nd ed. App. D11",
+      "title": "Risk-based AI/ML lifecycle validation",
+      "obligation": "Guidance",
+      "family": "CV",
+      "family_name": "Configuration, Validation & Change Control"
+    }
+  ],
+  "benchmark_coverage": {
+    "n_items": 126,
+    "by_framework_family": {
+      "HIPAA": {
+        "AU": 6,
+        "IA": 6,
+        "AC": 9,
+        "EN": 7,
+        "DI": 4,
+        "SM": 8,
+        "BK": 2
+      },
+      "Part11": {
+        "CV": 7,
+        "AU": 9,
+        "AC": 5,
+        "IA": 11,
+        "DI": 7,
+        "SM": 1,
+        "EN": 1,
+        "BK": 1
+      },
+      "GxP": {
+        "DI": 12,
+        "CV": 10,
+        "AC": 5,
+        "AU": 5,
+        "BK": 7,
+        "IA": 3
+      }
+    },
+    "by_framework_task": {
+      "HIPAA": {
+        "mcq": 24,
+        "misuse": 12,
+        "benign": 6
+      },
+      "Part11": {
+        "mcq": 24,
+        "misuse": 12,
+        "benign": 6
+      },
+      "GxP": {
+        "mcq": 24,
+        "misuse": 12,
+        "benign": 6
+      }
+    },
+    "family_totals": {
+      "AU": 20,
+      "IA": 20,
+      "AC": 19,
+      "EN": 8,
+      "DI": 23,
+      "SM": 9,
+      "BK": 10,
+      "CV": 17
+    }
+  },
+  "notes": "Regulatory text verified against primary sources (Cornell LII mirror of eCFR; EC EudraLex Annex 11 PDF). Family and CSF 2.0 assignments are analytical. GAMP 5 App. D11 paraphrased from ISPE public ToC/commentary (paywalled guide)."
+}
