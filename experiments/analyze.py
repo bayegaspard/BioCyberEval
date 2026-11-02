@@ -238,7 +238,7 @@ def write_summary(js):
         f"- Framework means: HIPAA {macros['fwHIPAA']}%, Part 11 {macros['fwPartEleven']}%, GxP {macros['fwGxP']}%.",
         f"- Weakest control families: {macros['weakFamilies']}; strongest: {macros['strongFamilies']}.",
         "- Control-level paired K-vs-U analysis: results/paired_analysis.json.",
-        "- Scorer cross-check vs independent judge: results/validation_full.json.",
+        "- Scorer cross-check vs LLM judge: results/validation_full.json.",
         "- Benign correctness (judge-based): results/benign_correctness.csv (from sensitivity.py)."])
     (pd / "SUMMARY.md").write_text("\n".join(MD) + "\n")
     print("wrote results/SUMMARY.md, results/stats.json, and figures/*.pdf")
@@ -257,145 +257,7 @@ def _pearson(xs, ys):
 
 
 # ------------------------------- figures -----------------------------------
-def fig_knowledge_vs_safety(js):
-    from matplotlib.patches import Rectangle
-    names = order(js)
-    KX, KY = 75, 25   # explicit danger-zone thresholds
-    # hand-tuned label offsets (points) to avoid overlap in the crowded cluster
-    off = {"Llama-3.2-1B": (6, 4), "DeepSeek-R1-1.5B": (6, -11),
-           "DeepSeek-Coder-1.3B": (-6, 6), "Llama-3.2-3B": (-52, 4),
-           "Gemma-3-4B": (6, 6), "Mistral-7B": (-46, -4), "Qwen2.5-7B": (7, -6),
-           "Llama-3.1-8B": (7, 3), "DeepSeek-R1-8B": (-64, 0), "GPT-OSS-20B": (7, 2)}
-    fig, ax = plt.subplots(figsize=(5.0, 4.0))
-    ax.add_patch(Rectangle((KX, -5), 100 - KX, KY + 5, facecolor="#fde0d0", alpha=0.7, zorder=0))
-    ax.text(76, 24, f"knowledge $\\geq$ {KX}%,\nrefusal $\\leq$ {KY}%",
-            ha="left", va="top", fontsize=6.0, color="#8a3b12", zorder=1)
-    seen = set()
-    for n in names:
-        r = js[n]
-        x, y = r["mcq_acc"] * 100, r["misuse_refuse_rate"] * 100
-        xlo, xhi = wilson_ci(r["mcq_c"], r["mcq_n"]); ylo, yhi = wilson_ci(r["ref_c"], r["mis_n"])
-        mk = FAMILY_MARKERS.get(r["family"], "o")
-        lbl = r["family"] if r["family"] not in seen else None
-        seen.add(r["family"])
-        ax.errorbar(x, y, xerr=[[x - xlo * 100], [xhi * 100 - x]],
-                    yerr=[[y - ylo * 100], [yhi * 100 - y]], fmt=mk, ms=6,
-                    color="#333333", ecolor="#c4c4c4", elinewidth=0.7, capsize=2,
-                    label=lbl, zorder=3)
-        dx, dy = off.get(n, (6, 4))
-        ax.annotate(n, (x, y), fontsize=5.6, ha="left", va="center", xytext=(dx, dy),
-                    textcoords="offset points",
-                    arrowprops=dict(arrowstyle="-", lw=0.4, color="#999999", shrinkA=0, shrinkB=2))
-    ax.set_xlabel("Compliance knowledge (MCQ accuracy, %)")
-    ax.set_ylabel("Misuse-refusal rate (%)")
-    ax.set_xlim(35, 102); ax.set_ylim(-5, 100)
-    ax.legend(frameon=False, fontsize=6.2, loc="upper left", ncol=2)
-    ax.set_title("Knowledge versus guardrail behavior")
-    fig.savefig(C.FIG_DIR / "fig_knowledge_vs_safety.pdf")
-    plt.close(fig)
-
-
-def fig_acc_by_size(js):
-    names = order(js)
-    off = {"Llama-3.2-1B": (4, 4), "DeepSeek-Coder-1.3B": (4, -10),
-           "DeepSeek-R1-1.5B": (4, 5), "Llama-3.2-3B": (4, 4), "Gemma-3-4B": (-40, 4),
-           "Mistral-7B": (4, -10), "Qwen2.5-7B": (4, 5), "Llama-3.1-8B": (5, -10),
-           "DeepSeek-R1-8B": (5, 3), "GPT-OSS-20B": (6, 2)}
-    fig, ax = plt.subplots(figsize=(4.8, 3.2))
-    for n in names:
-        r = js[n]
-        mk = FAMILY_MARKERS.get(r["family"], "o")
-        ax.scatter(r["params_b"], r["mcq_acc"] * 100, marker=mk, s=44,
-                   c=("#D55E00" if r["family"] == "GPT-OSS" else "#0072B2"), zorder=3,
-                   edgecolors="white", linewidths=0.5)
-        dx, dy = off.get(n, (4, 3))
-        ax.annotate(n, (r["params_b"], r["mcq_acc"] * 100), fontsize=5.6, ha="left",
-                    va="center", xytext=(dx, dy), textcoords="offset points",
-                    arrowprops=dict(arrowstyle="-", lw=0.4, color="#aaaaaa", shrinkA=0, shrinkB=2))
-    ax.axhline(25, ls="--", c="#999", lw=0.7); ax.text(1.0, 27, "chance (25%)", fontsize=6, color="#666")
-    ax.set_xscale("log"); ax.set_xlabel("Total parameters (B, log scale)")
-    ax.set_ylabel("MCQ accuracy (%)"); ax.set_ylim(0, 100)
-    ax.set_title("Knowledge vs. scale (confounded by family/architecture)")
-    fig.savefig(C.FIG_DIR / "fig_acc_by_size.pdf")
-    plt.close(fig)
-
-
-def fig_framework_dot(js):
-    """Dot plot: framework mean with model spread, replacing 30 grouped bars."""
-    names = order(js)
-    fws = ["HIPAA", "Part11", "GxP"]; disp = {"HIPAA": "HIPAA", "Part11": "21 CFR Part 11", "GxP": "GxP"}
-    fig, ax = plt.subplots(figsize=(4.6, 2.9))
-    for i, fw in enumerate(fws):
-        vals = [js[n]["acc_by_fw"][fw] * 100 for n in names]
-        ax.scatter(vals, [i] * len(vals), color=FW_COLORS[fw], alpha=0.55, s=28, zorder=3)
-        mean = sum(vals) / len(vals)
-        ax.scatter([mean], [i], color="black", marker="|", s=400, zorder=4, linewidths=1.6)
-        ax.annotate(f"mean {mean:.1f}", (mean, i + 0.18), fontsize=6.5, ha="center")
-    ax.axvline(25, ls="--", c="#999", lw=0.7)
-    ax.set_yticks(range(3)); ax.set_yticklabels([disp[f] for f in fws])
-    ax.set_xlabel("MCQ accuracy across the 10 models (%)"); ax.set_xlim(20, 100)
-    ax.set_ylim(-0.5, 2.6); ax.set_title("Knowledge by framework")
-    fig.savefig(C.FIG_DIR / "fig_acc_by_framework.pdf")
-    plt.close(fig)
-
-
-def fig_guardrail_stack(js):
-    names = order(js)
-    refuse = [js[n]["misuse_refuse_rate"] * 100 for n in names]
-    amb = [js[n]["misuse_amb_rate"] * 100 for n in names]
-    comply = [js[n]["misuse_comply_rate"] * 100 for n in names]
-    x = np.arange(len(names))
-    fig, ax = plt.subplots(figsize=(6.6, 3.1))
-    b1 = ax.bar(x, refuse, label="Refuse (safe)", color="#009E73")
-    b2 = ax.bar(x, amb, bottom=refuse, label="Ambiguous", color="#BBBBBB")
-    b3 = ax.bar(x, comply, bottom=[a + b for a, b in zip(refuse, amb)], label="Comply (unsafe)", color="#D55E00")
-    for bar in b1: bar.set_hatch("//")
-    for bar in b3: bar.set_hatch("xx")
-    ax.set_xticks(x); ax.set_xticklabels(names, rotation=35, ha="right", fontsize=6.6)
-    ax.set_ylabel("Share of 36 misuse prompts (%)"); ax.set_ylim(0, 100)
-    ax.set_title("Guardrail outcomes on control-violating requests", pad=22)
-    ax.legend(ncol=3, frameon=False, loc="lower center", bbox_to_anchor=(0.5, 1.14))
-    fig.savefig(C.FIG_DIR / "fig_guardrail_stack.pdf")
-    plt.close(fig)
-
-
-def fig_forest(js):
-    """Forest plot: per-model misuse-refusal with 95% Wilson CIs."""
-    names = order(js)[::-1]
-    ys = np.arange(len(names))
-    fig, ax = plt.subplots(figsize=(4.6, 3.4))
-    for i, n in enumerate(names):
-        r = js[n]; val = r["misuse_refuse_rate"] * 100
-        lo, hi = wilson_ci(r["ref_c"], r["mis_n"])
-        ax.plot([lo * 100, hi * 100], [i, i], color="#888", lw=1.2, zorder=2)
-        ax.scatter([val], [i], color="#1b7837", s=30, zorder=3)
-    ax.set_yticks(ys); ax.set_yticklabels(names, fontsize=6.8)
-    ax.set_xlabel("Misuse-refusal rate (%) with 95% Wilson CI"); ax.set_xlim(-3, 100)
-    ax.set_title("Refusal of control-violating requests")
-    fig.savefig(C.FIG_DIR / "fig_forest.pdf")
-    plt.close(fig)
-
-
-def fig_family_heatmap(js):
-    names = order(js)
-    fams = ["AC", "IA", "AU", "EN", "DI", "BK", "CV", "SM"]
-    M = np.full((len(names), len(fams)), np.nan)
-    for i, n in enumerate(names):
-        for full, val in js[n]["acc_by_family"].items():
-            M[i, fams.index(FAM_CODE[full])] = val * 100
-    fig, ax = plt.subplots(figsize=(6.4, 4.3))
-    im = ax.imshow(M, aspect="auto", cmap="viridis", vmin=0, vmax=100)
-    ax.set_xticks(range(len(fams))); ax.set_xticklabels(fams, fontsize=9)
-    ax.set_yticks(range(len(names))); ax.set_yticklabels(names, fontsize=8)
-    for i in range(len(names)):
-        for j in range(len(fams)):
-            if not math.isnan(M[i, j]):
-                ax.text(j, i, f"{M[i,j]:.0f}", ha="center", va="center", fontsize=7.5,
-                        color="white" if M[i, j] < 55 else "black")
-    cb = fig.colorbar(im, ax=ax, fraction=0.045, pad=0.03); cb.set_label("MCQ accuracy (%)", fontsize=9)
-    ax.set_title("Knowledge by control family")
-    fig.savefig(C.FIG_DIR / "fig_family_heatmap.pdf")
-    plt.close(fig)
+# Figures are drawn by figures.py from results/summary.json (single source of style).
 
 
 def main():
@@ -408,12 +270,14 @@ def main():
     write_csvs(rows, js)
     print(f"complete models ({len(js)}):", ", ".join(order(js)))
     write_summary(js)
-    fig_knowledge_vs_safety(js)
-    fig_acc_by_size(js)
-    fig_framework_dot(js)
-    fig_guardrail_stack(js)
-    fig_forest(js)
-    fig_family_heatmap(js)
+    import figures
+    names = order(js)
+    figures.fig_knowledge_vs_safety(js, names)
+    figures.fig_acc_by_size(js, names)
+    figures.fig_framework_dot(js, names)
+    figures.fig_guardrail_stack(js, names)
+    figures.fig_forest(js, names)
+    figures.fig_family_heatmap(js, names)
     print("wrote figures ->", C.FIG_DIR)
     print(f'\n{"model":18} {"nB":>5} {"MCQ":>6} {"refuse":>7} {"comply":>7} {"benOR":>6}')
     for n in order(js):

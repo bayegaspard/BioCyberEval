@@ -1,0 +1,113 @@
+{
+  "fmTamperItems": "13",
+  "fmTamperComply": "47.7",
+  "fmTamperRefuse": "29.2",
+  "fmTamperJComply": "51.5",
+  "fmDisableItems": "12",
+  "fmDisableComply": "45.8",
+  "fmDisableRefuse": "16.7",
+  "fmDisableJComply": "60.8",
+  "fmAccessItems": "8",
+  "fmAccessComply": "40.0",
+  "fmAccessRefuse": "31.2",
+  "fmAccessJComply": "42.5",
+  "fmExfilItems": "3",
+  "fmExfilComply": "46.7",
+  "fmExfilRefuse": "36.7",
+  "fmExfilJComply": "40.0",
+  "fmFamHighest": "BK",
+  "fmFamHighestComply": "66.7",
+  "fmFamHighestItems": "3",
+  "fmFamLowest": "SM",
+  "fmFamLowestComply": "0.0",
+  "fmFamLowestItems": "1",
+  "fmFwHIPAAComply": "32.5",
+  "fmFwPartElevenComply": "49.2",
+  "fmFwGxPComply": "54.2",
+  "fmNComply": "163",
+  "fmCaveatN": "29",
+  "fmCaveatPct": "17.8",
+  "fmCodeN": "91",
+  "fmCodePct": "55.8",
+  "fmCaveatModels": "8",
+  "rankSpearman": "0.81",
+  "rankSpearmanP": "0.004",
+  "rankKendall": "0.67",
+  "rankKendallP": "0.009",
+  "rankTopRule": "GPT-OSS-20B",
+  "rankTopJudge": "DeepSeek-R1-8B",
+  "judgeRefuseMin": "16.7",
+  "judgeRefuseMax": "94.4",
+  "judgeRefuseMinModel": "Qwen2.5-7B",
+  "ambN": "103",
+  "ambToRefuse": "52",
+  "ambToComply": "51",
+  "ambEmpty": "5",
+  "ambNeither": "89",
+  "ambBoth": "9",
+  "ruleComplyJudgeRefuse": "29",
+  "ruleRefuseJudgeComply": "1",
+  "rankShiftMaxModel": "DeepSeek-R1-8B",
+  "rankShiftMax": "69.4",
+  "rankShiftRuleRefuse": "25.0",
+  "rankShiftJudgeRefuse": "94.4",
+  "rankShiftAmbToRefuse": "19",
+  "rankShiftAmbEmpty": "5",
+  "rankShiftComplyToRefuse": "6",
+  "diagKzeroN": "45",
+  "diagKzeroTwoSmallest": "26",
+  "diagLlamaOneKzeroRefuse": "6",
+  "diagLlamaOneKzeroN": "13",
+  "diagInformativeModels": "5",
+  "diagNoRefusalModels": "4",
+  "mcqUnparseable": "34",
+  "mcqTotal": "720",
+  "emptyMcq": "20",
+  "emptyBenign": "5",
+  "emptyBenignJudgedCorrect": "1",
+  "benignCorrectEmptyAdj": "68.9",
+  "benignCorrectRaw": "69.4",
+  "emptyModels": "3",
+  "perModelRefuse": {
+    "Llama-3.2-1B": {
+      "rule": "58.3",
+      "judge": "72.2"
+    },
+    "DeepSeek-R1-1.5B": {
+      "rule": "0.0",
+      "judge": "19.4"
+    },
+    "DeepSeek-Coder-1.3B": {
+      "rule": "0.0",
+      "judge": "19.4"
+    },
+    "Llama-3.2-3B": {
+      "rule": "44.4",
+      "judge": "52.8"
+    },
+    "Gemma-3-4B": {
+      "rule": "11.1",
+      "judge": "33.3"
+    },
+    "Mistral-7B": {
+      "rule": "2.8",
+      "judge": "27.8"
+    },
+    "Qwen2.5-7B": {
+      "rule": "2.8",
+      "judge": "16.7"
+    },
+    "Llama-3.1-8B": {
+      "rule": "33.3",
+      "judge": "58.3"
+    },
+    "DeepSeek-R1-8B": {
+      "rule": "25.0",
+      "judge": "94.4"
+    },
+    "GPT-OSS-20B": {
+      "rule": "83.3",
+      "judge": "88.9"
+    }
+  }
+}

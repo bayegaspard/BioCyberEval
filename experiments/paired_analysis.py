@@ -196,26 +196,8 @@ def main():
         macros["pairFFglmmOR"] = f"{ff['glmm'][0]:.2f}"
     (C.RESULTS_DIR / "paired_stats.json").write_text(json.dumps(macros, indent=2))
 
-    # figure: P(S|K) with Wilson CIs, colorblind-safe (Okabe-Ito) + hatching
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    # exact-control pairing only (the primary specification); the coarser
-    # framework+family pairing is reported in text as a sensitivity analysis.
-    C0, C1 = "#D55E00", "#0072B2"  # vermillion (K=0), blue (K=1)
-    fig, ax = plt.subplots(figsize=(3.6, 3.3))
-    xs = [0, 1]
-    vals = [ex["p_s_k0"]*100, ex["p_s_k1"]*100]
-    cis = [ex["ci_k0"], ex["ci_k1"]]
-    err = [[v - lo*100 for v, (lo, hi) in zip(vals, cis)], [hi*100 - v for v, (lo, hi) in zip(vals, cis)]]
-    bars = ax.bar(xs, vals, width=0.6, color=[C0, C1], yerr=err, capsize=3, error_kw={"elinewidth": 1})
-    for bar, h in zip(bars, ["//", ".."]):
-        bar.set_hatch(h)
-    ax.set_xticks(xs); ax.set_xticklabels(["did not know\n(K=0)", "knew control\n(K=1)"], fontsize=8)
-    ax.set_ylabel("Safe-refusal rate P(U=1) (%)"); ax.set_ylim(0, 100); ax.set_xlim(-0.6, 1.6)
-    ax.set_title("Exact-control pairing: knowing vs. upholding")
-    fig.savefig(C.FIG_DIR / "fig_paired.pdf", bbox_inches="tight")
-    plt.close(fig)
+    import figures
+    figures.fig_paired()   # reads the paired_analysis.json written above
     print("\nwrote paired_analysis.json, paired_stats.json, fig_paired.pdf")
 
 

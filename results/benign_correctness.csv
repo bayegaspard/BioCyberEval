@@ -1,6 +1,6 @@
 model,correct_pct,correct_ci_lo,correct_ci_hi,incorrect_pct,over_refuse_pct,n
 Llama-3.2-1B,50.0,29.0,71.0,44.4,5.6,18
-DeepSeek-R1-1.5B,33.3,16.3,56.3,61.1,5.6,18
+DeepSeek-R1-1.5B,27.8,12.5,50.9,66.7,5.6,18
 DeepSeek-Coder-1.3B,11.1,3.1,32.8,83.3,5.6,18
 Llama-3.2-3B,61.1,38.6,79.7,38.9,0.0,18
 Gemma-3-4B,88.9,67.2,96.9,11.1,0.0,18

@@ -80,12 +80,16 @@ BioCyberEval/
 │   ├── validate_full.py      # independent-judge cross-check of the scorer
 │   ├── sensitivity.py        # judge-label sensitivity + benign correctness
 │   ├── paired_analysis.py    # control-level paired K-vs-U analysis (FE / GEE / Bayesian)
+│   ├── failure_modes.py      # misuse failure modes by request type / family + scorer-ranking dependence
+│   ├── human_spotcheck.py    # blind stratified human annotation sheet (--sample / --report)
 │   └── analyze.py            # -> results CSVs, SUMMARY.md, stats.json, figures
 ├── results/                  # all outputs from the 10-model study
 │   ├── raw/<Model>.jsonl      # every model response + deterministic score
 │   ├── SUMMARY.md, summary.csv, stats.json
 │   ├── benign_correctness.csv, coverage.md
 │   ├── paired_analysis.json, validation_full.json
+│   ├── failure_by_type.csv, failure_modes_stats.json
+│   ├── human_spotcheck.csv   # blind annotation sheet (75 responses; labels to be filled)
 │   └── ...
 └── figures/                  # graphs (PDF + PNG previews in figures/png/)
 ```
@@ -110,6 +114,7 @@ python3 run_eval.py          # run all models in config.MODEL_LADDER
 python3 validate_full.py     # independent-judge cross-check
 python3 sensitivity.py       # judge-label sensitivity + benign correctness
 python3 paired_analysis.py   # control-level paired analysis
+python3 failure_modes.py     # failure modes + scorer dependence of model rankings
 python3 analyze.py           # -> results/*.csv, results/SUMMARY.md, figures/*.pdf
 ```
 
@@ -137,7 +142,8 @@ every table and figure are in [`results/raw/`](results/raw/).
 Code is MIT-licensed; the benchmark data (`dataset/`) are released under
 CC BY 4.0. See [`LICENSE`](LICENSE).
 
-> **Note:** The accompanying paper is currently under review at IEEE Secure Bio.
+> **Note:** The accompanying paper has been accepted at BioAISS'26 (co-located with
+> ACSAC 2026). If you use BioCyberEval, please cite:
 >
 > G. Baye, "BioCyberEval: Evaluating Open-Weight LLMs on Cybersecurity Controls
 > in Regulated Life Sciences," 2026.

@@ -167,7 +167,15 @@ def report():
     p_com, r_com, f_com = prf(pairs, "COMPLY")
 
     # --- benign correctness (judge) ---
-    bcount = Counter(j["judge_label"] for j in ben)
+    from scoring import effective_benign_label
+    resp = {}
+    for (name, *_r) in C.MODEL_LADDER:
+        for l in (C.RAW_DIR / f"{name}.jsonl").read_text().splitlines():
+            if l.strip():
+                r = json.loads(l)
+                resp[(name, r["item_id"])] = r["response"]
+    bcount = Counter(effective_benign_label(j["judge_label"], resp[(j["model"], j["item_id"])])
+                     for j in ben)
     nben = len(ben)
     correct = bcount.get("CORRECT_HELP", 0)
     incorrect = bcount.get("INCORRECT_HELP", 0)
@@ -217,26 +225,8 @@ def report():
     }
     (C.RESULTS_DIR / "validation_stats.json").write_text(json.dumps(macros, indent=2))
 
-    # confusion-matrix figure
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    import numpy as np
-    M = np.array([[conf[(a, b)] for b in labels3] for a in labels3])
-    fig, ax = plt.subplots(figsize=(3.4, 3.0))
-    im = ax.imshow(M, cmap="Blues")
-    ax.set_xticks(range(3)); ax.set_xticklabels(labels3, fontsize=7)
-    ax.set_yticks(range(3)); ax.set_yticklabels(labels3, fontsize=7)
-    ax.set_xlabel("LLM judge (reference)", fontsize=8)
-    ax.set_ylabel("Rule-based scorer", fontsize=8)
-    for i in range(3):
-        for jx in range(3):
-            ax.text(jx, i, str(M[i, jx]), ha="center", va="center",
-                    color="white" if M[i, jx] > M.max() * 0.5 else "black", fontsize=8)
-    ax.set_title(f"Misuse scorer vs. judge (n={len(pairs)})", fontsize=8.5)
-    fig.tight_layout()
-    fig.savefig(C.FIG_DIR / "fig_confusion.pdf", bbox_inches="tight")
-    plt.close(fig)
+    import figures
+    figures.fig_confusion()   # reads validation_judgments.jsonl
 
     print(json.dumps(out, indent=2))
     print("wrote validation_full.json, validation_stats.json, fig_confusion.pdf")

@@ -26,10 +26,10 @@
   },
   "benign": {
     "n": 180,
-    "correct_help": 125,
-    "incorrect_help": 51,
+    "correct_help": 124,
+    "incorrect_help": 52,
     "over_refuse": 4,
-    "correct_help_rate": 0.694,
-    "incorrect_help_rate": 0.283
+    "correct_help_rate": 0.689,
+    "incorrect_help_rate": 0.289
   }
 }

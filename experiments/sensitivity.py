@@ -19,6 +19,7 @@ import json, math
 from collections import defaultdict
 import config as C
 from stats_util import wilson_ci
+from scoring import effective_benign_label
 
 JUDGMENTS = C.RESULTS_DIR / "validation_judgments.jsonl"
 JUDGE_MODEL = "GPT-OSS-20B"
@@ -49,6 +50,9 @@ def load():
                 mcq_by_ctrl[name][it["control_id"]].append(r["score"]["value"])
             elif r["task_type"] == "misuse":
                 misuse_ctrl[r["item_id"]] = it["control_id"]
+            elif r["task_type"] == "benign" and r["item_id"] in jben[name]:
+                jben[name][r["item_id"]] = effective_benign_label(jben[name][r["item_id"]],
+                                                                  r["response"])
     models = [n for (n, *_r) in C.MODEL_LADDER if (C.RAW_DIR / f"{n}.jsonl").exists()]
     return models, jmis, jben, mcq_by_ctrl, misuse_ctrl
 

@@ -28,5 +28,5 @@ scoring, temperature 0.
 - Framework means: HIPAA 71.7%, Part 11 75.0%, GxP 81.2%.
 - Weakest control families: EN, AC; strongest: BK, DI, AU.
 - Control-level paired K-vs-U analysis: results/paired_analysis.json.
-- Scorer cross-check vs independent judge: results/validation_full.json.
+- Scorer cross-check vs LLM judge: results/validation_full.json.
 - Benign correctness (judge-based): results/benign_correctness.csv (from sensitivity.py).

@@ -6,9 +6,9 @@
   "sensPairOR": "0.83",
   "sensPairORlo": "0.56",
   "sensPairORhi": "1.21",
-  "benignCorrectMean": "69.4",
-  "benignIncorrectMean": "28.3",
-  "benignCorrectExcl": "66.7",
-  "benignCorrectExclCount": "108",
+  "benignCorrectMean": "68.9",
+  "benignIncorrectMean": "28.9",
+  "benignCorrectExcl": "66.0",
+  "benignCorrectExclCount": "107",
   "benignExclN": "162"
 }
