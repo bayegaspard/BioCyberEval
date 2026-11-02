@@ -2,22 +2,22 @@
 
 **A citable control catalog for the CyberBio benchmark**
 
-- Scope: (1) HIPAA Security Rule — 45 CFR Part 164, Subpart C; (2) FDA 21 CFR Part 11 (Electronic Records; Electronic Signatures); (3) GxP data integrity for computerised systems — ALCOA+, EU GMP Annex 11, and ISPE GAMP 5 (2nd ed.).
+- Scope: (1) HIPAA Security Rule: 45 CFR Part 164, Subpart C; (2) FDA 21 CFR Part 11 (Electronic Records; Electronic Signatures); (3) GxP data integrity for computerised systems: ALCOA+, EU GMP Annex 11, and ISPE GAMP 5 (2nd ed.).
 - Compiled: 2026-08-10.
-- Verification method: regulatory text verified verbatim against primary sources — Cornell Law LII mirror of the U.S. Code of Federal Regulations for the CFR material, and the official European Commission EudraLex Volume 4 PDF for Annex 11. ALCOA+ and GAMP 5 details are cross-checked against regulator guidance and ISPE publication metadata; where a source is secondary (paywalled ISPE guide), it is flagged explicitly in the Sources section and in the relevant rows.
+- Verification method: regulatory text verified verbatim against primary sources: Cornell Law LII mirror of the U.S. Code of Federal Regulations for the CFR material, and the official European Commission EudraLex Volume 4 PDF for Annex 11. ALCOA+ and GAMP 5 details are cross-checked against regulator guidance and ISPE publication metadata; where a source is secondary (paywalled ISPE guide), it is flagged explicitly in the Sources section and in the relevant rows.
 - Notation: For HIPAA, each implementation specification is tagged **(Required)** or **(Addressable)** exactly as it appears in the rule; the parent "standards" are always mandatory but carry no R/A tag (marked "Standard"). 21 CFR Part 11 and Annex 11 requirements are all mandatory within their applicability scope (no R/A distinction); ALCOA+ are principles, not clauses.
 - Normalized families (used in the last column of every table and defined in Part B):
   AC = Access Control & Authorization · IA = Identity & Authentication · AU = Audit Trail & Logging · EN = Encryption & Transmission Security · DI = Data Integrity & Non-repudiation · BK = Backup, Availability & Contingency · CV = Configuration, Validation & Change Control · SM = Security Management, Risk & Incident Response.
 
 ---
 
-## Part A — Per-Framework Control Extraction
+## Part A: Per-Framework Control Extraction
 
-### A.1 HIPAA Security Rule — 45 CFR Part 164, Subpart C
+### A.1 HIPAA Security Rule: 45 CFR Part 164, Subpart C
 
-Legal structure: three safeguard groups — Administrative (§164.308), Physical (§164.310), Technical (§164.312) — each composed of *standards* and, under many, *implementation specifications* that are either **Required** or **Addressable**. "Addressable" does not mean optional: the covered entity/business associate must assess whether the specification is reasonable and appropriate, implement it if so, or document why not and implement an equivalent alternative (§164.306(d)).
+Legal structure: three safeguard groups (Administrative §164.308, Physical §164.310, Technical §164.312), each composed of *standards* and, under many, *implementation specifications* that are either **Required** or **Addressable**. "Addressable" does not mean optional: the covered entity/business associate must assess whether the specification is reasonable and appropriate, implement it if so, or document why not and implement an equivalent alternative (§164.306(d)).
 
-#### A.1.1 Technical Safeguards — §164.312
+#### A.1.1 Technical Safeguards: §164.312
 
 | control_id | Official citation | Title | Cyber requirement (paraphrase) | R/A | Family |
 |---|---|---|---|---|---|
@@ -34,7 +34,7 @@ Legal structure: three safeguard groups — Administrative (§164.308), Physical
 | HIPAA-312-e-2-i | 45 CFR 164.312(e)(2)(i) | Integrity controls | Ensure transmitted ePHI is not improperly modified without detection until disposed of. | Addressable | EN |
 | HIPAA-312-e-2-ii | 45 CFR 164.312(e)(2)(ii) | Encryption (in transit) | Implement a mechanism to encrypt ePHI whenever deemed appropriate. | Addressable | EN |
 
-#### A.1.2 Administrative Safeguards — §164.308 (cyber-relevant subset)
+#### A.1.2 Administrative Safeguards: §164.308 (cyber-relevant subset)
 
 | control_id | Official citation | Title | Cyber requirement (paraphrase) | R/A | Family |
 |---|---|---|---|---|---|
@@ -68,7 +68,7 @@ Legal structure: three safeguard groups — Administrative (§164.308), Physical
 | HIPAA-308-a-8 | 45 CFR 164.308(a)(8) | Evaluation (standard) | Perform periodic technical and nontechnical evaluation establishing the extent to which security policies/procedures meet the rule's requirements. | Standard | SM |
 | HIPAA-308-b-1 | 45 CFR 164.308(b)(1) | Business associate contracts / other arrangements (standard) | Obtain satisfactory assurances (via contract) that a business associate will appropriately safeguard ePHI. | Standard | SM |
 
-#### A.1.3 Physical Safeguards — §164.310 (device/media and workstation subset)
+#### A.1.3 Physical Safeguards: §164.310 (device/media and workstation subset)
 
 Included where they touch device/media protection and endpoint restriction (per scope). Facility access controls (a) and Workstation use (b) are listed for completeness but are chiefly physical, not cyber.
 
@@ -85,11 +85,11 @@ Included where they touch device/media protection and endpoint restriction (per 
 
 ---
 
-### A.2 FDA 21 CFR Part 11 — Electronic Records; Electronic Signatures
+### A.2 FDA 21 CFR Part 11: Electronic Records; Electronic Signatures
 
 All Part 11 requirements are mandatory when the record/signature falls within Part 11's predicate-rule scope; there is no Required/Addressable split. §11.10 governs *closed* systems; §11.30 adds measures for *open* systems; §§11.50–11.70 govern signature manifestation and linking; §§11.100–11.300 govern electronic signatures and their credential controls.
 
-#### A.2.1 Controls for closed systems — §11.10
+#### A.2.1 Controls for closed systems: §11.10
 
 | control_id | Official citation | Title | Cyber requirement (paraphrase) | Family |
 |---|---|---|---|---|
@@ -105,13 +105,13 @@ All Part 11 requirements are mandatory when the record/signature falls within Pa
 | PART11-11.10-j | 21 CFR 11.10(j) | Accountability policies | Establish and adhere to written policies holding individuals accountable/responsible for actions initiated under their electronic signatures, to deter record and signature falsification. | DI |
 | PART11-11.10-k | 21 CFR 11.10(k) | Controls over systems documentation | Control distribution/access/use of, and revision/change control (with audit trail) over, systems operation and maintenance documentation. | CV |
 
-#### A.2.2 Controls for open systems — §11.30
+#### A.2.2 Controls for open systems: §11.30
 
 | control_id | Official citation | Title | Cyber requirement (paraphrase) | Family |
 |---|---|---|---|---|
-| PART11-11.30 | 21 CFR 11.30 | Controls for open systems | Employ §11.10 controls as applicable *plus* additional measures — such as document encryption and use of appropriate digital signature standards — to ensure record authenticity, integrity, and (as appropriate) confidentiality from creation to receipt. | EN |
+| PART11-11.30 | 21 CFR 11.30 | Controls for open systems | Employ §11.10 controls as applicable *plus* additional measures, such as document encryption and use of appropriate digital signature standards: to ensure record authenticity, integrity, and (as appropriate) confidentiality from creation to receipt. | EN |
 
-#### A.2.3 Electronic signature manifestation and linking — §§11.50, 11.70
+#### A.2.3 Electronic signature manifestation and linking: §§11.50, 11.70
 
 | control_id | Official citation | Title | Cyber requirement (paraphrase) | Family |
 |---|---|---|---|---|
@@ -119,7 +119,7 @@ All Part 11 requirements are mandatory when the record/signature falls within Pa
 | PART11-11.50-b | 21 CFR 11.50(b) | Manifestation in human-readable form | The above items are subject to the same controls as electronic records and must appear in any human-readable form (display or printout). | DI |
 | PART11-11.70 | 21 CFR 11.70 | Signature/record linking | Electronic and handwritten signatures executed to electronic records must be linked to their records so they cannot be excised, copied, or otherwise transferred to falsify a record by ordinary means. | DI |
 
-#### A.2.4 Electronic signatures — general, components, and credential controls — §§11.100, 11.200, 11.300
+#### A.2.4 Electronic signatures: general, components, and credential controls (§§11.100, 11.200, 11.300)
 
 | control_id | Official citation | Title | Cyber requirement (paraphrase) | Family |
 |---|---|---|---|---|
@@ -136,7 +136,7 @@ All Part 11 requirements are mandatory when the record/signature falls within Pa
 
 ---
 
-### A.3 GxP Data Integrity for Computerised Systems — ALCOA+, EU GMP Annex 11, GAMP 5
+### A.3 GxP Data Integrity for Computerised Systems: ALCOA+, EU GMP Annex 11, GAMP 5
 
 #### A.3.1 ALCOA+ data-integrity principles
 
@@ -154,7 +154,7 @@ ALCOA was coined by the U.S. FDA (attributed to Stan Woollen) as a GLP/GMP recor
 | ALCOA-En | MHRA 2018 (ALCOA+) | Enduring | Data are durable and retained on suitable media throughout the retention period. | BK |
 | ALCOA-Av | MHRA 2018 (ALCOA+) | Available | Data are accessible/retrievable for review and audit throughout their lifecycle. | BK |
 
-#### A.3.2 EU GMP Annex 11 — Computerised Systems (EudraLex Vol. 4, rev. 1, in force 30 June 2011)
+#### A.3.2 EU GMP Annex 11: Computerised Systems (EudraLex Vol. 4, rev. 1, in force 30 June 2011)
 
 Verified verbatim from the official European Commission PDF. Cyber-relevant clauses (1–17 numbering is the Annex's own). All are "should" expectations that are enforceable under EU GMP.
 
@@ -166,16 +166,16 @@ Verified verbatim from the official European Commission PDF. Cyber-relevant clau
 | ANNEX11-4 | Annex 11 cl. 4 | Validation | Validate the application across relevant lifecycle steps; maintain system inventory and, for critical systems, a system description covering physical/logical arrangements, data flows, interfaces, and **security measures**; verify data are unaltered on migration (cl. 4.8). | CV |
 | ANNEX11-5 | Annex 11 cl. 5 | Data | Systems exchanging data electronically must include built-in checks for correct and **secure entry and processing** of data. | DI |
 | ANNEX11-6 | Annex 11 cl. 6 | Accuracy Checks | For critical data entered manually, add an accuracy check (second operator or validated electronic means). | DI |
-| ANNEX11-7.1 | Annex 11 cl. 7.1 | Data Storage — protection | Secure data by physical and electronic means against damage; check stored data for accessibility, readability, accuracy; ensure access throughout the retention period. | BK |
-| ANNEX11-7.2 | Annex 11 cl. 7.2 | Data Storage — backups | Perform regular backups of all relevant data; check integrity, accuracy, and restorability during validation and monitor periodically. | BK |
+| ANNEX11-7.1 | Annex 11 cl. 7.1 | Data Storage: protection | Secure data by physical and electronic means against damage; check stored data for accessibility, readability, accuracy; ensure access throughout the retention period. | BK |
+| ANNEX11-7.2 | Annex 11 cl. 7.2 | Data Storage: backups | Perform regular backups of all relevant data; check integrity, accuracy, and restorability during validation and monitor periodically. | BK |
 | ANNEX11-8 | Annex 11 cl. 8 | Printouts | Provide clear printed copies of stored data; for batch-release records, printouts must indicate whether any data changed since original entry. | DI |
 | ANNEX11-9 | Annex 11 cl. 9 | Audit Trails | Based on risk, build in a system-generated audit trail of GMP-relevant changes/deletions; document the reason for change/deletion; audit trails available, convertible to intelligible form, and regularly reviewed. | AU |
 | ANNEX11-10 | Annex 11 cl. 10 | Change and Configuration Management | Make any change to the system (including configuration) only in a controlled manner per a defined procedure. | CV |
 | ANNEX11-11 | Annex 11 cl. 11 | Periodic Evaluation | Periodically evaluate systems to confirm a valid, GMP-compliant state (functionality, deviations, incidents, upgrade history, performance, reliability, **security**, validation status). | CV |
-| ANNEX11-12.1 | Annex 11 cl. 12.1 | Security — access restriction | Physical and/or logical controls restrict system access to authorized persons (keys, pass cards, personal codes with passwords, biometrics, restricted access to equipment and data-storage areas). | AC |
-| ANNEX11-12.2 | Annex 11 cl. 12.2 | Security — risk-proportionate | The extent of security controls depends on the criticality of the computerised system. | AC |
-| ANNEX11-12.3 | Annex 11 cl. 12.3 | Security — authorization records | Record creation, change, and cancellation of access authorizations. | AU |
-| ANNEX11-12.4 | Annex 11 cl. 12.4 | Security — operator identity capture | Data/document management systems must record the identity of operators entering, changing, confirming, or deleting data, including date and time. | AU |
+| ANNEX11-12.1 | Annex 11 cl. 12.1 | Security: access restriction | Physical and/or logical controls restrict system access to authorized persons (keys, pass cards, personal codes with passwords, biometrics, restricted access to equipment and data-storage areas). | AC |
+| ANNEX11-12.2 | Annex 11 cl. 12.2 | Security: risk-proportionate | The extent of security controls depends on the criticality of the computerised system. | AC |
+| ANNEX11-12.3 | Annex 11 cl. 12.3 | Security: authorization records | Record creation, change, and cancellation of access authorizations. | AU |
+| ANNEX11-12.4 | Annex 11 cl. 12.4 | Security: operator identity capture | Data/document management systems must record the identity of operators entering, changing, confirming, or deleting data, including date and time. | AU |
 | ANNEX11-13 | Annex 11 cl. 13 | Incident Management | Report and assess all incidents (not only system failures/data errors); identify root cause of critical incidents as the basis for CAPA. | SM |
 | ANNEX11-14 | Annex 11 cl. 14 | Electronic Signature | Electronic signatures must have the same impact as handwritten signatures within the company, be permanently linked to their record, and include the time and date applied. | DI |
 | ANNEX11-15 | Annex 11 cl. 15 | Batch Release | For certification/batch release, permit only Qualified Persons to certify release and clearly identify/record the certifying person, performed via electronic signature. | AC |
@@ -184,7 +184,7 @@ Verified verbatim from the official European Commission PDF. Cyber-relevant clau
 
 > Note: A revision of Annex 11 is under EMA consultation (draft published for comment); the version cataloged above is the in-force rev. 1 (2011). Cite the in-force version for compliance claims and note the draft only where forward-looking.
 
-#### A.3.3 ISPE GAMP 5 (2nd Edition, 2022) — risk-based validation and AI/ML appendix D11
+#### A.3.3 ISPE GAMP 5 (2nd Edition, 2022): risk-based validation and AI/ML appendix D11
 
 GAMP 5 is industry guidance (not law) widely accepted by regulators for demonstrating validated GxP computerised systems. It underpins the risk-based validation expected by Annex 11 cl. 1/4 and Part 11 §11.10(a). The 2nd edition (ISPE, published July 2022) incorporates computer software assurance (CSA) thinking and adds Appendix D11 on AI/ML. GAMP 5 is a paywalled ISPE publication; the rows below are paraphrased from ISPE's public description/table of contents and regulator/industry commentary, not from verbatim guide text.
 
@@ -195,75 +195,75 @@ GAMP 5 is industry guidance (not law) widely accepted by regulators for demonstr
 
 ---
 
-## Part B — Normalized Cross-Framework Control Taxonomy
+## Part B: Normalized Cross-Framework Control Taxonomy
 
 Eight normalized control families with the extracted controls mapped into each. Every extracted control appears in at least one family (primary family = the last column in Part A; families in parentheses in Part A are secondary and also listed here where load-bearing).
 
 | Normalized family | HIPAA (§164.30x) | 21 CFR Part 11 | GxP: Annex 11 / ALCOA+ / GAMP 5 |
 |---|---|---|---|
-| **AC — Access Control & Authorization** | 312-a-1 (access control), 312-a-2-ii (emergency access), 312-a-2-iii (auto-logoff), 308-a-3 (workforce security A–C), 308-a-4 (info access mgmt A–C), 310-c (workstation security), 310-a-1 (facility access), 310-b (workstation use) | 11.10(d) limiting access, 11.10(g) authority checks | Annex 11 cl. 2 (level of access), 12.1 (access restriction), 12.2 (risk-proportionate), 15 (batch release authority) |
-| **IA — Identity & Authentication** | 312-a-2-i (unique user ID), 312-d (person/entity authentication), 308-a-5-ii-D (password mgmt) | 11.10(h) device checks, 11.100(a)(b) signature uniqueness/identity, 11.200(a)(b) signature components, 11.300(a)(b)(c)(e) credential controls | (Annex 11 12.1 authentication methods — keys/passwords/biometrics) |
-| **AU — Audit Trail & Logging** | 312-b (audit controls), 308-a-1-ii-D (activity review), 308-a-5-ii-C (log-in monitoring), 310-d-2-iii (accountability) | 11.10(e) secure time-stamped audit trails | Annex 11 cl. 9 (audit trails), 12.3 (authorization records), 12.4 (operator identity/time); ALCOA-A (attributable), ALCOA-C (contemporaneous) |
-| **EN — Encryption & Transmission Security** | 312-a-2-iv (encrypt/decrypt at rest), 312-e-1 (transmission security), 312-e-2-i (integrity controls), 312-e-2-ii (encryption in transit) | 11.30 (open systems: encryption + digital signatures) | — |
-| **DI — Data Integrity & Non-repudiation (incl. e-signatures)** | 312-c-1 (integrity), 312-c-2 (authenticate ePHI) | 11.10(f) operational checks, 11.10(j) accountability policies, 11.50(a)(b) signature manifestations, 11.70 signature/record linking, 11.100(c) certification | Annex 11 cl. 5 (secure data entry), 6 (accuracy checks), 8 (printouts show change), 14 (electronic signature); ALCOA L/O/Ac/Cp/Cs |
-| **BK — Backup, Availability & Contingency** | 308-a-7 (contingency plan A–E), 310-d-2-iv (data backup and storage) | 11.10(b) accurate copies, 11.10(c) record protection/retrieval | Annex 11 cl. 7.1 (secure storage), 7.2 (backups), 16 (business continuity), 17 (archiving); ALCOA-En (enduring), ALCOA-Av (available) |
-| **CV — Configuration, Validation & Change Control** | — (308-a-8 evaluation is adjacent; mapped to SM) | 11.10(a) validation, 11.10(k) documentation controls | Annex 11 cl. 4 (validation), 10 (change/config mgmt), 11 (periodic evaluation); GAMP5-RBA (risk-based validation), GAMP5-D11 (AI/ML lifecycle) |
-| **SM — Security Management, Risk & Incident Response** | 308-a-1 (security mgmt process A–D), 308-a-2 (assigned responsibility), 308-a-5-i/A/B (awareness, reminders, anti-malware), 308-a-6 (incident procedures), 308-a-8 (evaluation), 308-b-1 (BA contracts), 310-d-1/d-2-i/d-2-ii (device/media controls, disposal, re-use) | 11.10(i) personnel qualifications, 11.300(d) transaction safeguards (detect/report) | Annex 11 cl. 1 (risk mgmt), 3 (suppliers/third parties), 13 (incident mgmt) |
+| **AC: Access Control & Authorization** | 312-a-1 (access control), 312-a-2-ii (emergency access), 312-a-2-iii (auto-logoff), 308-a-3 (workforce security A–C), 308-a-4 (info access mgmt A–C), 310-c (workstation security), 310-a-1 (facility access), 310-b (workstation use) | 11.10(d) limiting access, 11.10(g) authority checks | Annex 11 cl. 2 (level of access), 12.1 (access restriction), 12.2 (risk-proportionate), 15 (batch release authority) |
+| **IA: Identity & Authentication** | 312-a-2-i (unique user ID), 312-d (person/entity authentication), 308-a-5-ii-D (password mgmt) | 11.10(h) device checks, 11.100(a)(b) signature uniqueness/identity, 11.200(a)(b) signature components, 11.300(a)(b)(c)(e) credential controls | (Annex 11 12.1 authentication methods: keys/passwords/biometrics) |
+| **AU: Audit Trail & Logging** | 312-b (audit controls), 308-a-1-ii-D (activity review), 308-a-5-ii-C (log-in monitoring), 310-d-2-iii (accountability) | 11.10(e) secure time-stamped audit trails | Annex 11 cl. 9 (audit trails), 12.3 (authorization records), 12.4 (operator identity/time); ALCOA-A (attributable), ALCOA-C (contemporaneous) |
+| **EN: Encryption & Transmission Security** | 312-a-2-iv (encrypt/decrypt at rest), 312-e-1 (transmission security), 312-e-2-i (integrity controls), 312-e-2-ii (encryption in transit) | 11.30 (open systems: encryption + digital signatures) |: |
+| **DI: Data Integrity & Non-repudiation (incl. e-signatures)** | 312-c-1 (integrity), 312-c-2 (authenticate ePHI) | 11.10(f) operational checks, 11.10(j) accountability policies, 11.50(a)(b) signature manifestations, 11.70 signature/record linking, 11.100(c) certification | Annex 11 cl. 5 (secure data entry), 6 (accuracy checks), 8 (printouts show change), 14 (electronic signature); ALCOA L/O/Ac/Cp/Cs |
+| **BK: Backup, Availability & Contingency** | 308-a-7 (contingency plan A–E), 310-d-2-iv (data backup and storage) | 11.10(b) accurate copies, 11.10(c) record protection/retrieval | Annex 11 cl. 7.1 (secure storage), 7.2 (backups), 16 (business continuity), 17 (archiving); ALCOA-En (enduring), ALCOA-Av (available) |
+| **CV: Configuration, Validation & Change Control** | none (308-a-8 evaluation is adjacent; mapped to SM) | 11.10(a) validation, 11.10(k) documentation controls | Annex 11 cl. 4 (validation), 10 (change/config mgmt), 11 (periodic evaluation); GAMP5-RBA (risk-based validation), GAMP5-D11 (AI/ML lifecycle) |
+| **SM: Security Management, Risk & Incident Response** | 308-a-1 (security mgmt process A–D), 308-a-2 (assigned responsibility), 308-a-5-i/A/B (awareness, reminders, anti-malware), 308-a-6 (incident procedures), 308-a-8 (evaluation), 308-b-1 (BA contracts), 310-d-1/d-2-i/d-2-ii (device/media controls, disposal, re-use) | 11.10(i) personnel qualifications, 11.300(d) transaction safeguards (detect/report) | Annex 11 cl. 1 (risk mgmt), 3 (suppliers/third parties), 13 (incident mgmt) |
 
 ---
 
-## Part C — Mapping of Normalized Families to NIST CSF 2.0 Functions
+## Part C: Mapping of Normalized Families to NIST CSF 2.0 Functions
 
 NIST Cybersecurity Framework 2.0 (released February 2024) organizes outcomes into six Functions: **Govern (GV)**, **Identify (ID)**, **Protect (PR)**, **Detect (DE)**, **Respond (RS)**, **Recover (RC)**. Mapping below shows the primary Function(s) each normalized family serves, with the most relevant CSF 2.0 Categories.
 
 | Normalized family | Primary CSF 2.0 Function(s) | Most relevant CSF 2.0 Categories |
 |---|---|---|
-| AC — Access Control & Authorization | **Protect** | PR.AA (Identity Management, Authentication & Access Control) |
-| IA — Identity & Authentication | **Protect** (policy in **Govern**) | PR.AA (authentication, credential lifecycle); GV.RR (roles/responsibilities) |
-| AU — Audit Trail & Logging | **Detect** (supported by **Protect**) | DE.CM (Continuous Monitoring), DE.AE (Adverse Event Analysis); PR.PS logging |
-| EN — Encryption & Transmission Security | **Protect** | PR.DS (Data Security — data at rest and in transit) |
-| DI — Data Integrity & Non-repudiation | **Protect** (monitoring in **Detect**) | PR.DS (integrity/integrity-checking, e.g., PR.DS-06); DE.CM (integrity monitoring) |
-| BK — Backup, Availability & Contingency | **Recover** (resilience design in **Protect**) | RC.RP (Incident Recovery Plan Execution); PR.IR (Technology Infrastructure Resilience), backups under PR.DS |
-| CV — Configuration, Validation & Change Control | **Protect** and **Identify** (with **Govern**) | PR.PS (Platform Security — config/change mgmt), PR.IR; ID.AM (Asset Management); ID.RA (Risk Assessment) |
-| SM — Security Management, Risk & Incident Response | **Govern**, **Identify**, **Respond** (with **Detect**) | GV.RM (Risk Management Strategy), GV.SC (Cybersecurity Supply Chain Risk Mgmt), GV.RR; ID.RA, ID.IM (Improvement); RS.MA/RS.AN/RS.MI (Incident Management/Analysis/Mitigation), RS.CO |
+| AC: Access Control & Authorization | **Protect** | PR.AA (Identity Management, Authentication & Access Control) |
+| IA: Identity & Authentication | **Protect** (policy in **Govern**) | PR.AA (authentication, credential lifecycle); GV.RR (roles/responsibilities) |
+| AU: Audit Trail & Logging | **Detect** (supported by **Protect**) | DE.CM (Continuous Monitoring), DE.AE (Adverse Event Analysis); PR.PS logging |
+| EN: Encryption & Transmission Security | **Protect** | PR.DS (Data Security: data at rest and in transit) |
+| DI: Data Integrity & Non-repudiation | **Protect** (monitoring in **Detect**) | PR.DS (integrity/integrity-checking, e.g., PR.DS-06); DE.CM (integrity monitoring) |
+| BK: Backup, Availability & Contingency | **Recover** (resilience design in **Protect**) | RC.RP (Incident Recovery Plan Execution); PR.IR (Technology Infrastructure Resilience), backups under PR.DS |
+| CV: Configuration, Validation & Change Control | **Protect** and **Identify** (with **Govern**) | PR.PS (Platform Security: config/change mgmt), PR.IR; ID.AM (Asset Management); ID.RA (Risk Assessment) |
+| SM: Security Management, Risk & Incident Response | **Govern**, **Identify**, **Respond** (with **Detect**) | GV.RM (Risk Management Strategy), GV.SC (Cybersecurity Supply Chain Risk Mgmt), GV.RR; ID.RA, ID.IM (Improvement); RS.MA/RS.AN/RS.MI (Incident Management/Analysis/Mitigation), RS.CO |
 
-**Framework-level observation for the paper:** The three biotech frameworks are heavily weighted toward **Protect** (access, encryption, integrity), with strong **Recover** coverage (HIPAA contingency plan; Annex 11 business continuity/backup/archiving) and moderate **Detect/Respond** coverage (HIPAA audit controls + incident procedures; Part 11 audit trails + transaction safeguards; Annex 11 audit trails + incident management). **Govern** is expressed through risk management and supplier/business-associate obligations (HIPAA 308-b, Annex 11 cl. 1/3, GAMP 5 risk-based approach). None of the three prescribes modern network-defense controls (e.g., MFA is only implied by Part 11's two-component signatures and HIPAA "person/entity authentication"; there is no explicit segmentation, EDR, or threat-intel requirement) — a gap worth naming in the benchmark.
+**Framework-level observation for the paper:** The three biotech frameworks are heavily weighted toward **Protect** (access, encryption, integrity), with strong **Recover** coverage (HIPAA contingency plan; Annex 11 business continuity/backup/archiving) and moderate **Detect/Respond** coverage (HIPAA audit controls + incident procedures; Part 11 audit trails + transaction safeguards; Annex 11 audit trails + incident management). **Govern** is expressed through risk management and supplier/business-associate obligations (HIPAA 308-b, Annex 11 cl. 1/3, GAMP 5 risk-based approach). None of the three prescribes modern network-defense controls (e.g., MFA is only implied by Part 11's two-component signatures and HIPAA "person/entity authentication"; there is no explicit segmentation, EDR, or threat-intel requirement): a gap worth naming in the benchmark.
 
 ---
 
-## Part D — Sources
+## Part D: Sources
 
 Primary regulatory text (verified verbatim unless noted):
 
-- 45 CFR 164.308 — HIPAA Administrative Safeguards (Cornell Law LII mirror of eCFR): https://www.law.cornell.edu/cfr/text/45/164.308
-- 45 CFR 164.310 — HIPAA Physical Safeguards: https://www.law.cornell.edu/cfr/text/45/164.310
-- 45 CFR 164.312 — HIPAA Technical Safeguards: https://www.law.cornell.edu/cfr/text/45/164.312
-- 45 CFR 164.306 — HIPAA Security standards: general rules (Required/Addressable definition): https://www.law.cornell.edu/cfr/text/45/164.306
-- Authoritative U.S. source of record for all of the above (was blocking automated fetch during compilation; cite in the paper): eCFR Title 45, Part 164, Subpart C — https://www.ecfr.gov/current/title-45/part-164/subpart-C
-- 21 CFR 11.10 — Controls for closed systems: https://www.law.cornell.edu/cfr/text/21/11.10
-- 21 CFR 11.30 — Controls for open systems: https://www.law.cornell.edu/cfr/text/21/11.30
-- 21 CFR 11.50 — Signature manifestations: https://www.law.cornell.edu/cfr/text/21/11.50
-- 21 CFR 11.70 — Signature/record linking: https://www.law.cornell.edu/cfr/text/21/11.70
-- 21 CFR 11.100 — Electronic signatures, general requirements: https://www.law.cornell.edu/cfr/text/21/11.100
-- 21 CFR 11.200 — Electronic signature components and controls: https://www.law.cornell.edu/cfr/text/21/11.200
-- 21 CFR 11.300 — Controls for identification codes/passwords: https://www.law.cornell.edu/cfr/text/21/11.300
+- 45 CFR 164.308: HIPAA Administrative Safeguards (Cornell Law LII mirror of eCFR): https://www.law.cornell.edu/cfr/text/45/164.308
+- 45 CFR 164.310: HIPAA Physical Safeguards: https://www.law.cornell.edu/cfr/text/45/164.310
+- 45 CFR 164.312: HIPAA Technical Safeguards: https://www.law.cornell.edu/cfr/text/45/164.312
+- 45 CFR 164.306: HIPAA Security standards: general rules (Required/Addressable definition): https://www.law.cornell.edu/cfr/text/45/164.306
+- Authoritative U.S. source of record for all of the above (was blocking automated fetch during compilation; cite in the paper): eCFR Title 45, Part 164, Subpart C: https://www.ecfr.gov/current/title-45/part-164/subpart-C
+- 21 CFR 11.10: Controls for closed systems: https://www.law.cornell.edu/cfr/text/21/11.10
+- 21 CFR 11.30: Controls for open systems: https://www.law.cornell.edu/cfr/text/21/11.30
+- 21 CFR 11.50: Signature manifestations: https://www.law.cornell.edu/cfr/text/21/11.50
+- 21 CFR 11.70: Signature/record linking: https://www.law.cornell.edu/cfr/text/21/11.70
+- 21 CFR 11.100: Electronic signatures, general requirements: https://www.law.cornell.edu/cfr/text/21/11.100
+- 21 CFR 11.200: Electronic signature components and controls: https://www.law.cornell.edu/cfr/text/21/11.200
+- 21 CFR 11.300: Controls for identification codes/passwords: https://www.law.cornell.edu/cfr/text/21/11.300
 - eCFR authoritative source for Part 11: https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11
-- EU GMP Annex 11 — Computerised Systems (EudraLex Vol. 4, rev. 1, 2011), official European Commission PDF (verified verbatim, all 17 clauses + glossary): https://health.ec.europa.eu/system/files/2016-11/annex11_01-2011_en_0.pdf
+- EU GMP Annex 11: Computerised Systems (EudraLex Vol. 4, rev. 1, 2011), official European Commission PDF (verified verbatim, all 17 clauses + glossary): https://health.ec.europa.eu/system/files/2016-11/annex11_01-2011_en_0.pdf
 
-Guidance and standards (secondary / paywalled — used for ALCOA+ and GAMP 5; verify verbatim quotations against the originals before publication):
+Guidance and standards (secondary / paywalled; used for ALCOA+ and GAMP 5; verify verbatim quotations against the originals before publication):
 
-- FDA, "Data Integrity and Compliance With Drug CGMP: Questions and Answers — Guidance for Industry" (Dec 2018) — source of ALCOA as FDA data-integrity standard: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/data-integrity-and-compliance-drug-cgmp-questions-and-answers-guidance-industry
-- MHRA, "'GXP' Data Integrity Guidance and Definitions" (Rev 1, March 2018) — ALCOA+ definitions: https://www.gov.uk/government/publications/guidance-on-gxp-data-integrity
-- PIC/S PI 041-1, "Good Practices for Data Management and Integrity in Regulated GMP/GDP Environments" (July 2021) — ALCOA+ in inspection context: https://picscheme.org/en/publications
-- ISPE GAMP 5: A Risk-Based Approach to Compliant GxP Computerized Systems (2nd Edition, 2022) — publication page: https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition
-- ISPE GAMP 5 (2nd Edition) — Table of Contents (confirms Appendix D11 "Artificial Intelligence and Machine Learning"): https://ispe.org/sites/default/files/publications/guidance-documents/2022-TOC/ISPE-GAMP5-Ed2_TOC.pdf
-- ISPE, "New EU AI Regulation and GAMP 5," Pharmaceutical Engineering (Sept/Oct 2023) — GAMP 5 / AI context: https://ispe.org/pharmaceutical-engineering/september-october-2023/new-eu-ai-regulation-and-gampr-5
-- NIST Cybersecurity Framework (CSF) 2.0, NIST CSWP 29 (Feb 26, 2024) — Functions/Categories used in Part C: https://www.nist.gov/cyberframework and https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf
+- FDA, "Data Integrity and Compliance With Drug CGMP: Questions and Answers: Guidance for Industry" (Dec 2018): source of ALCOA as FDA data-integrity standard: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/data-integrity-and-compliance-drug-cgmp-questions-and-answers-guidance-industry
+- MHRA, "'GXP' Data Integrity Guidance and Definitions" (Rev 1, March 2018): ALCOA+ definitions: https://www.gov.uk/government/publications/guidance-on-gxp-data-integrity
+- PIC/S PI 041-1, "Good Practices for Data Management and Integrity in Regulated GMP/GDP Environments" (July 2021): ALCOA+ in inspection context: https://picscheme.org/en/publications
+- ISPE GAMP 5: A Risk-Based Approach to Compliant GxP Computerized Systems (2nd Edition, 2022): publication page: https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition
+- ISPE GAMP 5 (2nd Edition): Table of Contents (confirms Appendix D11 "Artificial Intelligence and Machine Learning"): https://ispe.org/sites/default/files/publications/guidance-documents/2022-TOC/ISPE-GAMP5-Ed2_TOC.pdf
+- ISPE, "New EU AI Regulation and GAMP 5," Pharmaceutical Engineering (Sept/Oct 2023): GAMP 5 / AI context: https://ispe.org/pharmaceutical-engineering/september-october-2023/new-eu-ai-regulation-and-gampr-5
+- NIST Cybersecurity Framework (CSF) 2.0, NIST CSWP 29 (Feb 26, 2024): Functions/Categories used in Part C: https://www.nist.gov/cyberframework and https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf
 
 ### Verification status / caveats
 
 - **Verified verbatim from primary sources:** all HIPAA §§164.308/.310/.312 rows; all 21 CFR Part 11 rows (§§11.10, 11.30, 11.50, 11.70, 11.100, 11.200, 11.300); all EU GMP Annex 11 rows (clauses 1–17, from the official EC PDF).
 - **Verified as to citation but paraphrased (not verbatim), because the source is paywalled/guidance rather than statute:** ISPE GAMP 5 2nd-edition risk-based approach and **Appendix D11** content. The *existence and title* of Appendix D11 and the July 2022 edition date are corroborated by ISPE's own table of contents; the detailed D11 requirement text is synthesized from ISPE/industry commentary and should be confirmed against the purchased guide before quoting in the IEEE paper.
-- **ALCOA+ principle definitions** are paraphrased from regulator guidance (FDA 2018, MHRA 2018, PIC/S PI 041); the exact wording of each "+" attribute varies slightly between MHRA, WHO, and PIC/S — cite the specific guidance you rely on.
+- **ALCOA+ principle definitions** are paraphrased from regulator guidance (FDA 2018, MHRA 2018, PIC/S PI 041); the exact wording of each "+" attribute varies slightly between MHRA, WHO, and PIC/S: cite the specific guidance you rely on.
 - **Family assignments are analytical**, not part of the source regulations; several controls legitimately span multiple families (secondary families are shown in parentheses in Part A and cross-listed in Part B).
 - The **eCFR** (ecfr.gov) is the U.S. authoritative electronic source; it blocked automated fetching during compilation, so the Cornell LII mirror was used for extraction. Text was consistent with the rule as published; for the paper, cite the eCFR/Federal Register section numbers (they are identical).
